@@ -1,0 +1,2 @@
+git "git@github.com:jakeheis/Shout.git" ~> 0.5.1
+github "Alamofire/Alamofire" ~> 4.9.0
