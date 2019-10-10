@@ -67,14 +67,13 @@
 				222C8193234DE63A004396DC /* ViewModels */,
 				222C8192234DE603004396DC /* Services */,
 				222C8191234DE5FA004396DC /* Models */,
-				2229808C234D5535005270BE /* AppDelegate.swift */,
+				2263CD06234E9B1100D83547 /* Views */,
 				2229808E234D5535005270BE /* SceneDelegate.swift */,
-				22298090234D5536005270BE /* ContentView.swift */,
+				2229808C234D5535005270BE /* AppDelegate.swift */,
 				22298092234D5537005270BE /* Assets.xcassets */,
 				22298097234D5537005270BE /* LaunchScreen.storyboard */,
 				2229809A234D5537005270BE /* Info.plist */,
 				22298094234D5537005270BE /* Preview Content */,
-				222C818B234D73D0004396DC /* PokemonDetail.swift */,
 			);
 			path = Flush;
 			sourceTree = "<group>";
@@ -109,6 +108,15 @@
 				222C818F234D824D004396DC /* PokemonStore.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		2263CD06234E9B1100D83547 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				22298090234D5536005270BE /* ContentView.swift */,
+				222C818B234D73D0004396DC /* PokemonDetail.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

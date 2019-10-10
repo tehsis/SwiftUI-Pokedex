@@ -13,11 +13,11 @@ struct PokemonDetail: View {
     
     init(pokemon: PokemonStore) {
         self.pokemon = pokemon
-        self.pokemon.ensureDetails()
     }
     
     var body: some View {
         VStack {
+            Image(systemName: "photo")
             Text("\(pokemon.pokemon.number)")
                 .font(.headline)
             Text(pokemon.pokemon.type)
@@ -32,5 +32,7 @@ struct PokemonDetail_Previews: PreviewProvider {
         NavigationView {
             PokemonDetail(pokemon: PokemonStore(pokemon: testData[0]))
         }
+        .accentColor(/*@START_MENU_TOKEN@*/.white/*@END_MENU_TOKEN@*/)
+        .background(/*@START_MENU_TOKEN@*/Color.red/*@END_MENU_TOKEN@*/)
     }
 }

@@ -8,7 +8,7 @@ struct Pokemon: Identifiable {
     var number: Int
     
     var type = "unknown"
-    var imageName: String?
+    var image: UIImageView?
     
 }
 

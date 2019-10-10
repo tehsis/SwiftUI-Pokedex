@@ -36,17 +36,19 @@ final class PokemonStore: ObservableObject, Identifiable {
             pokemon.id
         }
     }
+    
+    init(pokemon: Pokemon) {
+        self.pokemon = pokemon
+        self.ensureDetails()
+    }
+    
     var pokemon: Pokemon {
         didSet {
             objectWillChange.send()
         }
     }
     
-    init(pokemon: Pokemon) {
-        self.pokemon = pokemon
-    }
-    
-    public func ensureDetails() {
+    private func ensureDetails() {
         if (self.pokemon.type == "unknown") {
             PokemonService().get(pokemon: self.pokemon) { pokemonWithDetails in
                 self.pokemon =  pokemonWithDetails

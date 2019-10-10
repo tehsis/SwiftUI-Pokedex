@@ -11,24 +11,31 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var store = PokemonsStore()
+//    private var text: String = "char"
+    @State private var text: String = "";
+    private var currentPokemons: [PokemonStore] {
+        get {
+            return text.count > 0 ? store.pokemons.filter {
+                return $0.pokemon.name.contains(text.lowercased())
+            } : store.pokemons
+        }
+    }
     
      var body: some View {
         NavigationView {
-            List {
-                Section {
-                    Button(action: addPokemon) {
-                        Text("Add Pokemon")
+            HStack{
+                List {
+                    Section {
+                        TextField("Search", text: $text)
                     }
-                }
-                
-                Section {
-                    ForEach(store.pokemons) { pokemon in
-                        return PokemonCell(pokemon: pokemon)
-                    }.onDelete(perform: delPokemon)
-                    .onMove(perform: movePokemon)
-                }
-            }.navigationBarTitle(Text("Pokemon"))
-        }
+                    Section {
+                        ForEach(currentPokemons) { pokemon in
+                            return PokemonCell(pokemon: pokemon)
+                        }
+                    }
+                }.navigationBarTitle(Text("Pokemon"))
+            }
+        }.background(Color.red)
     }
     
     func movePokemon(from source: IndexSet, to destination: Int) {
@@ -48,15 +55,9 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView(store: PokemonsStore(pokemons: testData))
-    }
-}
 
 struct PokemonCell: View {
     var pokemon: PokemonStore
-    @State private var captured = false
     var body: some View {
         NavigationLink(destination: PokemonDetail(pokemon: pokemon)) {
             Image(systemName: "photo")
@@ -65,10 +66,15 @@ struct PokemonCell: View {
                 Text("\(pokemon.pokemon.number)")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
-                Toggle(isOn: $captured) {
-                    Text("is captured?").font(.footnote)
-                }
             }
         }
     }
 }
+
+#if DEBUG
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView(store: PokemonsStore(pokemons: testData))
+    }
+}
+#endif
